@@ -1,0 +1,21 @@
+# Maintainer: Wei-Ning Huang <aitjcize@gmail.com>
+pkgname=cppman
+pkgver=0.2.4
+pkgrel=1
+pkgdesc="manual page formatter that generates C++ man pages from cplusplus.com"
+arch=('any')
+url="https://github.com/Aitjcize/cppman"
+license=('GPL')
+depends=(python2 vim groff)
+source=("https://pypi.python.org/packages/source/c/cppman/${pkgname}-${pkgver}.tar.gz")
+md5sums=('4d15f1e5853066f8ab469ad8d9c3e53f')
+
+build() {
+  cd $srcdir/$pkgname-$pkgver
+  python2 setup.py build
+}
+
+package() {
+  cd $srcdir/$pkgname-$pkgver
+  python2 setup.py install --root=$pkgdir/ --optimize=1
+}
