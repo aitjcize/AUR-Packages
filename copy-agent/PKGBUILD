@@ -4,7 +4,7 @@
 
 pkgname=copy-agent
 pkgver=1.36.0538
-pkgrel=2
+pkgrel=1
 pkgdesc="Copy.com sync agent"
 arch=("i686" "x86_64")
 url="http://www.copy.com"
