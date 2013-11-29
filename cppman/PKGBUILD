@@ -6,6 +6,7 @@ pkgdesc="manual page formatter that generates C++ man pages from cplusplus.com"
 arch=('any')
 url="https://github.com/Aitjcize/cppman"
 license=('GPL')
+conflicts=(cppman-git)
 depends=(python2 vim groff)
 source=("https://pypi.python.org/packages/source/c/cppman/${pkgname}-${pkgver}.tar.gz")
 md5sums=('250786fab6935b8aa61299bccdd7a6dc')
