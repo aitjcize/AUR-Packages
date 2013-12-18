@@ -43,12 +43,9 @@ package() {
     cd copy/armv6h
   fi
 
-  for i in Copy{Agent,Cmd,Console}; do
+  for i in ca-bundle.crt Copy{Agent,Cmd,Console} libAgentSync.so; do
       install -Dm755 $i "$pkgdir/usr/bin/$i"
   done
-
-  #: Temp fix for strange bug in 1.40.0196
-  install -Dm755 libAgentSync.so $pkgdir/usr/bin/libAgentSync.so
 
   for i in lib{Brt,CloudMount,CloudSync,Gui}.so; do
       install -Dm755 $i "$pkgdir/usr/lib/$i"
