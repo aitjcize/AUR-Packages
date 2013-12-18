@@ -6,7 +6,7 @@ pkgname=copy-agent
 pkgver=1.40.0196
 pkgrel=1
 pkgdesc="Copy.com sync agent"
-arch=("i686" "x86_64")
+arch=("i686" "x86_64" "armv6h")
 url="http://www.copy.com"
 license=(custom)
 depends=("qt4" "gtk2" "fuse")
@@ -37,14 +37,20 @@ package() {
 
   if [ "$CARCH" == "x86_64" ]; then
     cd copy/x86_64
-  else
+  elif [ "$CARCH" == "i686" ]; then
     cd copy/x86
+  else
+    cd copy/armv6h
   fi
 
   for i in Copy{Agent,Cmd,Console}; do
       install -Dm755 $i "$pkgdir/usr/bin/$i"
   done
-  for i in lib{Gui,CloudSync,CloudMount,Brt,AgentSync}.so; do
+
+  #: Temp fix for strange bug in 1.40.0196
+  install -Dm755 libAgentSync.so $pkgdir/usr/bin/libAgentSync.so
+
+  for i in lib{Brt,CloudMount,CloudSync,Gui}.so; do
       install -Dm755 $i "$pkgdir/usr/lib/$i"
   done
   install -Dm755 libnautilus-copy.so "$pkgdir/usr/lib/nautilus/extensions-3.0/libnautilus-copy.so"
