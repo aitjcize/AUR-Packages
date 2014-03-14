@@ -12,11 +12,11 @@ source=("https://pypi.python.org/packages/source/P/PyTox/${_pkgname}-${pkgver}.t
 md5sums=('a3988e1e484ff4bd755c9b5c72b0d130')
 
 build() {
-  cd $srcdir/$_pkgname-$pkgver
+  cd ${_pkgname}-${pkgver}
   python setup.py build
 }
 
 package() {
-  cd $srcdir/$_pkgname-$pkgver
-  python setup.py install --root=$pkgdir/ --optimize=1
+  cd ${_pkgname}-${pkgver}
+  python setup.py install --root=${pkgdir}/ --optimize=1
 }
