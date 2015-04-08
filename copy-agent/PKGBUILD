@@ -10,7 +10,8 @@ arch=("i686" "x86_64" "armv6h")
 url="http://www.copy.com"
 license=(custom)
 depends=("fuse" "desktop-file-utils")
-optdepends=("qt4: GUI support")
+optdepends=("qt4: GUI support"
+            "libindicator-gtk2: indicator support")
 options=('!strip' '!upx')
 install=$pkgname.install
 sha256sums=('d81d7ea27dd2364f8b33c1d5e2c0ee8a6f8c323bbd55bd0f38625d2d980b3aab'
@@ -34,7 +35,7 @@ package() {
   desktop-file-install $pkgname.desktop --dir "$pkgdir/usr/share/applications/"
   install -Dm0644 $pkgname.png "$pkgdir/usr/share/pixmaps/$pkgname.png"
   install -Dm0644 $pkgname.service "$pkgdir/usr/lib/systemd/user/$pkgname.service"
-  install -Dm0644 copy-console.service "$pkgdir/usr/lib/systemd/user/copy-console@.service"
+  install -Dm0644 copy-console.service "$pkgdir/usr/lib/systemd/user/copy-console.service"
   install -Dm0644 $pkgname.desktop "$pkgdir/usr/share/applications/$pkgname.desktop"
   install -Dm644 TERMS "$pkgdir/usr/share/licenses/$pkgname/TERMS"
 
@@ -46,7 +47,15 @@ package() {
     cd copy/armv6h
   fi
 
-  for i in ca-bundle.crt lib{AgentSync,Brt,CloudSync,Gui}.so; do
+  for i in lib{AgentSync,Brt,CloudSync}.so; do
+    install -Dm755 $i "$pkgdir/opt/copy/$i"
+  done
+
+  if [ "$CARCH" != "armv6h" ]; then
+    install -Dm755 libGui.so "$pkgdir/opt/copy/libGui.so"
+  fi
+
+  for i in ca-bundle.crt copyext.rcc; do
     install -Dm755 $i "$pkgdir/opt/copy/$i"
   done
 
