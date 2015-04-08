@@ -3,7 +3,7 @@
 # Contributor: Tom < tomgparchaur at gmail dot com >
 
 pkgname=copy-agent
-pkgver=3.2.0.0478
+pkgver=3.2.01.0481
 pkgrel=1
 pkgdesc="Copy.com sync agent"
 arch=("i686" "x86_64" "armv6h")
@@ -14,7 +14,7 @@ optdepends=("qt4: GUI support"
             "libindicator-gtk2: indicator support")
 options=('!strip' '!upx')
 install=$pkgname.install
-sha256sums=('d81d7ea27dd2364f8b33c1d5e2c0ee8a6f8c323bbd55bd0f38625d2d980b3aab'
+sha256sums=('f33c0297c2d8f7e90ec481beed88a918446a87507c9ea29f8feae21a4e85f72e'
             'ef1767720b5e5eff6567e537f3fed1c1d7da17e4f4248479816cab924f62e431'
             'b69bc2f8b4315a43d3b60b11ec9c226c2060d14ac4d5702140260961c74620cb'
             'f9a460a12e5ee382b9d2d435028b46e3e289c0b49e4fd382d67052f297531c4a'
